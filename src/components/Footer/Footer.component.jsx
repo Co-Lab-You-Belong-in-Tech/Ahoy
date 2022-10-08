@@ -6,53 +6,66 @@ import googleStore from "../../assets/google-play-white.svg";
 
 export const Footer = () => {
   return (
-    <Box sx={{ backgroundColor: "#AF125A", color: "white" }}>
+    <Box sx={{ color: "white" }}>
       <Grid
         container
         direction="row"
-        sx={{ padding: "4rem 4rem 2rem 4rem" }}
+        p={8}
         display="flex"
         justifyContent="space-between"
-        alignItems="center"
+        textAlign="center"
       >
-        <Grid item>
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+        <Grid item xs="12" sm="6" md="3">
+          <Typography variant="h6" sx={{ fontWeight: 700, marginBottom: 2 }}>
             SPARK
           </Typography>
-          <Typography variant="subtitle2">Patnership</Typography>
-          <Typography variant="subtitle2">Ambassador</Typography>
+          <Typography variant="subtitle2" sx={{ marginBottom: 1 }}>
+            Patnership
+          </Typography>
+          <Typography variant="subtitle2" sx={{ marginBottom: 1 }}>
+            Ambassador
+          </Typography>
         </Grid>
-        <Grid item>
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+        <Grid item xs="12" sm="6" md="3">
+          <Typography variant="h6" sx={{ fontWeight: 700, marginBottom: 2 }}>
             RESOURCES
           </Typography>
-          <Typography variant="subtitle2">Patnership</Typography>
-          <Typography variant="subtitle2">Ambassador</Typography>
+          <Typography variant="subtitle2" sx={{ marginBottom: 1 }}>
+            Patnership
+          </Typography>
+          <Typography variant="subtitle2" sx={{ marginBottom: 1 }}>
+            Ambassador
+          </Typography>
         </Grid>
-        <Grid item>
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+        <Grid item xs="12" sm="6" md="3">
+          <Typography variant="h6" sx={{ fontWeight: 700, marginBottom: 2 }}>
             SOCIAL
           </Typography>
-          <Typography variant="subtitle2">Patnership</Typography>
-          <Typography variant="subtitle2">Ambassador</Typography>
+          <Typography variant="subtitle2" sx={{ marginBottom: 1 }}>
+            Patnership
+          </Typography>
+          <Typography variant="subtitle2" sx={{ marginBottom: 1 }}>
+            Ambassador
+          </Typography>
         </Grid>
-        <Grid item direction="column">
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+        <Grid item direction="column" xs="12" sm="6" md="3">
+          <Typography variant="h6" sx={{ fontWeight: 700, marginBottom: 2 }}>
             APP DOWNLOAD
           </Typography>
           <Link
             href="https://www.apple.com/store"
             target="_blank"
             rel="noopener"
+            sx={{ display: "block", marginBottom: 1 }}
           >
-            <img src={appStore} alt="" />
+            <img src={appStore} alt="" className="button-image" />
           </Link>
           <Link
             href="https://play.google.com/store"
             target="_blank"
             rel="noopener"
           >
-            <img src={googleStore} alt="" />
+            <img src={googleStore} alt="" className="button-image" />
           </Link>
         </Grid>
       </Grid>
