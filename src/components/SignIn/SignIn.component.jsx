@@ -2,9 +2,9 @@ import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebookOption } from 'react-icons/gr';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
-import './CreateAccount.styles.css';
+import './SignIn.styles.css';
 
-const CreateAccount = () => (
+const SignIn = () => (
   (
     <div className="create-account">
       <section className="first-column">
@@ -52,4 +52,4 @@ const CreateAccount = () => (
   )
 );
 
-export default CreateAccount;
+export default SignIn;
