@@ -1,10 +1,10 @@
 import './App.css';
-import CreateAccount from './components/CreateAccount/CreateAccount.component';
+import SignIn from './components/SignIn/SignIn.component';
 
 function App() {
   return (
     <div className="app">
-      <CreateAccount />
+      <SignIn />
     </div>
   );
 }
