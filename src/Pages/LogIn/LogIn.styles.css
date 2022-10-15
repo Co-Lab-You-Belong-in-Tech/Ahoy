@@ -1,0 +1,28 @@
+.log-in-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.log-in-link {
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    border-radius: 30px;
+    border: none;
+    padding: 1rem;
+    background-color: #212427;
+    color: #ffffff;
+    border: 1px solid #212427;
+}
+
+.log-in-link:hover {
+    color: #212427;
+    background-color: #ffffff;
+    border: 1px solid #212427;
+    cursor: pointer;
+}
