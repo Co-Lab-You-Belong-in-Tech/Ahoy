@@ -3,6 +3,8 @@ import SignUpPage from './Pages/SignUp/SignUp.Page';
 import SignInPage from './Pages/SignIn/SignIn.Page';
 
 import './App.css';
+import CreateProfile from './Pages/CreateProfile/CreateProfile.Page';
+import ProfileComplete from './components/ProfileComplete/ProfileComplete.component';
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/register" element={<SignUpPage />} />
+              <Route path="/create-profile" element={<CreateProfile />} />
               <Route index path="/" element={<SignInPage />} />
+              <Route path="profile-complete" element={<ProfileComplete />} />
             </Routes>
           </BrowserRouter>
         </div>
