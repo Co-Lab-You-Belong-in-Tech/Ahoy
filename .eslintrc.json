@@ -20,6 +20,8 @@
     "react"
   ],
   "rules": {
+    "react/require-default-props": "off",
+    "linebreak-style": 0,
     "react/jsx-filename-extension": [
       "warn",
       {
