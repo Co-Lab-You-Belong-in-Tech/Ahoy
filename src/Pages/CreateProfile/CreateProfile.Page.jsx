@@ -1,59 +1,46 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { IoIosArrowBack } from 'react-icons/io';
-import UserDetails from '../../components/UserDetails/UserDetails.component';
-import UserGender from '../../components/UserGender/UserGender.component';
-import UserPreference from '../../components/UserPreference/UserPreference.component';
-import UserImage from '../../components/UserImage/UserImage.component';
-import UserInterests from '../../components/UserInterests/UserInterests.component';
+import ProfileHeader from './ProfileHeader/ProfileHeader.component';
+import UserDetails from './UserDetails/UserDetails.component';
+import UserImage from './UserImage/UserImage.component';
+import ProfileComplete from './ProfileComplete/ProfileComplete.component';
 
 const CreateProfile = () => {
   const [pageNumber, setPageNumber] = useState(0);
-  // For file upload
-  const [selectedFile, setSelectedFile] = useState('');
-  const changePage = (value) => {
+  const goToNextPage = (value) => {
     (
       setPageNumber((pageNumber) => pageNumber + value)
     );
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(data);
+  // };
+
+  // const tabs = [<UserDetails pageNumber={pageNumber} goToNextPage={goToNextPage} key={1} />,
+  //   <UserGender pageNumber={pageNumber} goToNextPage={goToNextPage} key={2} />,
+  //   <UserImage
+  //     key={3}
+  //     pageNumber={pageNumber}
+  //     goToNextPage={goToNextPage}
+  //     selectedFile={selectedFile}
+  //     setSelectedFile={setSelectedFile}
+  //   />,
+  //   <ProfileComplete key={4} />,
+  // ];
+
   return (
     <section className="create-profile-page">
-      {pageNumber < 1
-        && (
-          <header>
-            <div className="back-btn-container">
-              <Link to="/register" className="back-btn">
-                <IoIosArrowBack />
-              </Link>
-            </div>
-            <button type="button" className="skip-btn" onClick={() => changePage(1)}>skip</button>
-          </header>
-        ) }
+      <ProfileHeader goToNextPage={goToNextPage} pageNumber={pageNumber} />
       <main>
-        <form action="submit">
-          {pageNumber < 1 && <UserDetails pageNumber={pageNumber} changePage={changePage} />}
-          {pageNumber === 1
-            ? <UserGender pageNumber={pageNumber} changePage={changePage} /> : <></>}
-          {pageNumber === 2
-            ? <UserPreference pageNumber={pageNumber} changePage={changePage} /> : <></>}
-          {pageNumber === 3
-            ? (
-              <UserImage
-                pageNumber={pageNumber}
-                changePage={changePage}
-                selectedFile={selectedFile}
-                setSelectedFile={setSelectedFile}
-              />
-            ) : <></> }
-          {pageNumber === 4
-            ? (
-              <UserInterests
-                pageNumber={pageNumber}
-                changePage={changePage}
-              />
-            ) : <></> }
-        </form>
+        {pageNumber === 0 && <UserDetails goToNextPage={goToNextPage} />}
+        {pageNumber === 1 && (
+          <UserImage
+            pageNumber={pageNumber}
+            goToNextPage={goToNextPage}
+          />
+        )}
+        {pageNumber === 2 && <ProfileComplete />}
       </main>
     </section>
   );
