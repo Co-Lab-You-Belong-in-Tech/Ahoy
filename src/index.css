@@ -55,6 +55,13 @@ form input {
   outline-color: black;
 }
 
+form textarea {
+  padding: 0.875rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid #dedede;
+  outline-color: black;
+}
+
 .auth-page {
   display: flex;
   flex-direction: column;

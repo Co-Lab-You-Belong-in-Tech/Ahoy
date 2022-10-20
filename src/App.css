@@ -71,10 +71,18 @@
 }
 
 .back-btn {
-  padding: 0.5rem;
-  background-color: transparent;
-  border: 1px solid black;
   border-radius: 0.75rem;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  color: black;
+  font-size: 1.125rem;
+  font-weight: 500;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.disable {
+  pointer-events: none;
 }
 
 .skip-btn {
@@ -97,65 +105,10 @@
   font-weight: 400;
 }
 
-/* Gender component */
-.gender-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.gender-input {
-  display: none;
-}
-
-.gender-label {
-  padding: 0.875rem 1rem;
-  border-radius: 1rem;
-  border: 1px solid #dedede;
-  cursor: pointer;
-}
-
-input[type="radio"]:checked + .gender-label {
-  background-color: #FFFDA1;
-  font-weight: 700;
-}
-
-/* User preference */
-.preference-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.preference-label {
-  padding: 0.875rem 1rem;
-  border-radius: 1rem;
-  border: 1px solid #dedede;
-  cursor: pointer;
-}
-
-.preference-input {
-  display: none;
-}
-
-/* User interests */
-.interests-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.interests-label {
-  width: 45%;
-  display: flex;
-  align-items: center;
-  padding: 0.875rem 1rem;
-  border-radius: 1rem;
-  border: 1px solid #dedede;
-  cursor: pointer;
-}
-
-.interest-input {
-  display: none;
+/* User Image */
+.image-output {
+  width: 100%;
+  height: 30vh;
 }
 
 .profile-complete {
