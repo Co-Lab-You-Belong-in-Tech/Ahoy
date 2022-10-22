@@ -1,8 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
 import SignUpPage from './Pages/SignUp/SignUp.Page';
 import SignInPage from './Pages/SignIn/SignIn.Page';
 
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -26,6 +29,19 @@ function App() {
             </Routes>
           </BrowserRouter>
         </div>
+        <aside>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+        </aside>
       </div>
     </div>
   );
