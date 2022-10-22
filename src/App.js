@@ -49,7 +49,7 @@ function App() {
               <Route path="/dashboard" element={<ProtectedRoute to={<Dashboard />} />} />
               <Route path="/users/register" element={<SignUpPage />} />
               <Route path="/users/sign-in" element={<SignInPage />} />
-              <Route index path="/" element={(<div>public homepage</div>)} />
+              <Route index path="/" element={(<SignInPage />)} />
             </Routes>
           </BrowserRouter>
         </div>
