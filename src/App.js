@@ -1,13 +1,35 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-
-import SignUpPage from './Pages/SignUp/SignUp.Page';
-import SignInPage from './Pages/SignIn/SignIn.Page';
+import { toast, ToastContainer } from 'react-toastify';
 
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+import SignUpPage from './Pages/SignUp/SignUp.Page';
+import SignInPage from './Pages/SignIn/SignIn.Page';
+
+import ProtectedRoute from './components/ProtectedRoute';
+import Dashboard from './Pages/Dashboard/Dashboard.Page';
+import userSlice, { authenticateAsync } from './features/user/userSlice';
+
 function App() {
+  const { token } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (token) {
+      dispatch(authenticateAsync(token))
+        .unwrap()
+        .catch(() => {
+          toast.error('You need to login again!');
+          dispatch(userSlice.actions.signOut());
+        });
+    } else {
+      dispatch(userSlice.actions.setUnauthenticated());
+    }
+  }, []);
+
   return (
     <div className="page-wrapper">
       <div className="container">
@@ -24,8 +46,10 @@ function App() {
         <div className="app">
           <BrowserRouter>
             <Routes>
-              <Route path="/register" element={<SignUpPage />} />
-              <Route index path="/" element={<SignInPage />} />
+              <Route path="/dashboard" element={<ProtectedRoute to={<Dashboard />} />} />
+              <Route path="/users/register" element={<SignUpPage />} />
+              <Route path="/users/sign-in" element={<SignInPage />} />
+              <Route index path="/" element={(<div>public homepage</div>)} />
             </Routes>
           </BrowserRouter>
         </div>
