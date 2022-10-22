@@ -66,7 +66,7 @@ const SignInPage = () => {
 
         <div className="center auth-nav">
           Don&apos;t have an account?
-          <Link to="/register">
+          <Link to="/users/register">
             Sign up
           </Link>
         </div>

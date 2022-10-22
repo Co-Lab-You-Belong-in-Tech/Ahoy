@@ -64,7 +64,7 @@ const SignUpPage = () => {
         </form>
         <div className="center auth-nav">
           Already have an account?
-          <Link to="/">
+          <Link to="/users/sign-in">
             Log In
           </Link>
         </div>
