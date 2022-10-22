@@ -62,6 +62,18 @@ const userSlice = createSlice({
         authStatus: AUTH_STATUS.authenticated,
       };
     },
+    [signupAsync.pending]: (state) => {
+      state.authStatus = AUTH_STATUS.authenticating;
+    },
+    [signupAsync.fulfilled]: (state, action) => {
+      const { data } = action.payload;
+      storage.set('token', data.token);
+      return {
+        ...state,
+        ...data,
+        authStatus: AUTH_STATUS.authenticated,
+      };
+    },
     [authenticateAsync.pending]: (state) => {
       state.authStatus = AUTH_STATUS.authenticating;
     },
