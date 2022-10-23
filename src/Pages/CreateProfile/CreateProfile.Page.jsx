@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+
+import { updateAsync } from '../../features/user/userSlice';
 import ProfileHeader from './ProfileHeader/ProfileHeader.component';
 import UserDetails from './UserDetails/UserDetails.component';
 import UserImage from './UserImage/UserImage.component';
@@ -13,6 +17,18 @@ const CreateProfile = () => {
     setPageNumber(() => pageNumber - 1);
   };
 
+  const dispatch = useDispatch();
+  const saveData = (data) => {
+    dispatch(updateAsync(data))
+      .unwrap()
+      .then(() => {
+        goToNextPage();
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
   return (
     <section className="create-profile-page">
       <ProfileHeader
@@ -21,11 +37,10 @@ const CreateProfile = () => {
         pageNumber={pageNumber}
       />
       <main>
-        {pageNumber === 0 && <UserDetails goToNextPage={goToNextPage} />}
+        {pageNumber === 0 && <UserDetails goToNextPage={goToNextPage} saveData={saveData} />}
         {pageNumber === 1 && (
           <UserImage
-            pageNumber={pageNumber}
-            goToNextPage={goToNextPage}
+            saveData={saveData}
           />
         )}
         {pageNumber === 2 && <ProfileComplete />}

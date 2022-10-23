@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import storage from '../../app/persistData';
-import { authenticate, signinRequest, signup } from './userApi';
+import {
+  authenticate, signinRequest, signup, updateUser,
+} from './userApi';
 import AUTH_STATUS from './authStatus';
 
 const initialState = {
@@ -34,6 +36,14 @@ export const authenticateAsync = createAsyncThunk(
   },
 );
 
+export const updateAsync = createAsyncThunk(
+  'user/update',
+  async (data) => {
+    const response = await updateUser(data);
+    return response;
+  },
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -47,6 +57,12 @@ const userSlice = createSlice({
     },
     setUnauthenticated: (state) => {
       state.authStatus = AUTH_STATUS.unauthenticated;
+    },
+    update: (state, action) => {
+      const { data } = action.payload;
+      Object.keys(data).forEach((propery) => {
+        state[propery] = data[propery];
+      });
     },
   },
   extraReducers: {
