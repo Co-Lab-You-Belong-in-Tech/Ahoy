@@ -3,6 +3,7 @@ import SignUpPage from './Pages/SignUp/SignUp.Page';
 import SignInPage from './Pages/SignIn/SignIn.Page';
 import './App.css';
 import CreateProfile from './Pages/CreateProfile/CreateProfile.Page';
+import FindMatch from './Pages/FindMatch/FindMatch.component';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Routes>
               <Route path="/register" element={<SignUpPage />} />
               <Route path="/create-profile" element={<CreateProfile />} />
+              <Route path="find-match" element={<FindMatch />} />
               <Route index path="/" element={<SignInPage />} />
             </Routes>
           </BrowserRouter>
