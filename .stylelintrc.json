@@ -16,7 +16,8 @@
     ],
     "csstree/validator": true,
     "linebreak-style": 0,
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "jsx-a11y/label-has-for": 0
   },
   "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css", "**/*.js", "**/*.jsx"]
 }
