@@ -5,12 +5,8 @@ const UserDetails = ({ goToNextPage }) => {
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
 
-  const handleSubmit = () => {
-    name: name;
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className="v-spacer" />
       <h2>Profile details</h2>
       <div className="v-spacer" />
