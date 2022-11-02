@@ -77,14 +77,17 @@ export async function authenticate(token) {
   }
 }
 
-export async function updateUser(data) {
+export async function updateUser({ data, token }) {
   const endpoint = '/users/me';
+
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  };
 
   const response = await fetch(CONFIG.BASE_URL + endpoint, {
     method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify(data),
   });
 

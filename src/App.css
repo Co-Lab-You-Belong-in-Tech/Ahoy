@@ -71,16 +71,22 @@
 .back-btn {
   border-radius: 0.75rem;
   background-color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem;
   color: black;
-  font-size: 1.125rem;
-  font-weight: 500;
   border: 1px solid black;
   cursor: pointer;
+  display: grid;
+  place-content: center;
+}
+
+.back-btn > svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .disable {
   pointer-events: none;
+  opacity: 0.25;
 }
 
 .skip-btn {

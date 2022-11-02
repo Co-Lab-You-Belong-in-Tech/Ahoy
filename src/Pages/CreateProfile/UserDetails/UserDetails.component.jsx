@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const UserDetails = ({ saveData }) => {
+  const user = useSelector((state) => state.user);
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
+
+  useEffect(() => {
+    setName(user.name);
+    setBio(user.bio);
+  }, [user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

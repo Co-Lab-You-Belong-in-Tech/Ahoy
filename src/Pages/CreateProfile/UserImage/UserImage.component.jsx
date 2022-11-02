@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const UserImage = ({ saveData }) => {
+  const user = useSelector((state) => state.user);
   const [profileImg, setProfileImg] = useState();
+
+  useEffect(() => {
+    setProfileImg(user.avatar);
+  }, [user]);
+
   const onImageChange = (e) => {
     const file = e.target.files[0];
     setProfileImg(URL.createObjectURL(file));
@@ -9,7 +16,7 @@ const UserImage = ({ saveData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    saveData({ photo: profileImg });
+    saveData({ avatar: profileImg });
   };
 
   return (
