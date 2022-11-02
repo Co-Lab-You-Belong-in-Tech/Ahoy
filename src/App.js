@@ -6,12 +6,12 @@ import { toast, ToastContainer } from 'react-toastify';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+import userSlice, { authenticateAsync } from './features/user/userSlice';
+import ProtectedRoute from './components/ProtectedRoute';
 import SignUpPage from './Pages/SignUp/SignUp.Page';
 import SignInPage from './Pages/SignIn/SignIn.Page';
-
-import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './Pages/Dashboard/Dashboard.Page';
-import userSlice, { authenticateAsync } from './features/user/userSlice';
+import CreateProfile from './Pages/CreateProfile/CreateProfile.Page';
 
 function App() {
   const { token } = useSelector((state) => state.user);
@@ -46,9 +46,11 @@ function App() {
         <div className="app">
           <BrowserRouter>
             <Routes>
-              <Route path="/dashboard" element={<ProtectedRoute to={<Dashboard />} />} />
+              <Route exact path="/dashboard" element={<ProtectedRoute to={<Dashboard />} />} />
+
               <Route path="/users/register" element={<SignUpPage />} />
               <Route path="/users/sign-in" element={<SignInPage />} />
+              <Route path="/users/create-profile" element={<CreateProfile />} />
               <Route index path="/" element={(<SignInPage />)} />
             </Routes>
           </BrowserRouter>

@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import storage from '../../app/persistData';
-import { authenticate, signinRequest, signup } from './userApi';
+import {
+  authenticate, signinRequest, signup, updateUser,
+} from './userApi';
 import AUTH_STATUS from './authStatus';
 
 const initialState = {
   authStatus: AUTH_STATUS.initialized,
   token: storage.get('token'),
-  name: '',
-  role: '',
 };
 
 export const signinAsync = createAsyncThunk(
@@ -34,6 +34,14 @@ export const authenticateAsync = createAsyncThunk(
   },
 );
 
+export const updateAsync = createAsyncThunk(
+  'user/update',
+  async ({ data, token }) => {
+    const response = await updateUser({ data, token });
+    return response;
+  },
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -55,10 +63,12 @@ const userSlice = createSlice({
     },
     [signinAsync.fulfilled]: (state, action) => {
       const { data } = action.payload;
-      storage.set('token', data.token);
+      const { user, token } = data;
+      storage.set('token', token);
       return {
         ...state,
-        ...data,
+        token,
+        ...user,
         authStatus: AUTH_STATUS.authenticated,
       };
     },
@@ -67,10 +77,12 @@ const userSlice = createSlice({
     },
     [signupAsync.fulfilled]: (state, action) => {
       const { data } = action.payload;
+      const { user, token } = data;
       storage.set('token', data.token);
       return {
         ...state,
-        ...data,
+        token,
+        ...user,
         authStatus: AUTH_STATUS.authenticated,
       };
     },
@@ -79,14 +91,26 @@ const userSlice = createSlice({
     },
     [authenticateAsync.fulfilled]: (state, action) => {
       const { data } = action.payload;
+      const { user, token } = data;
       return {
         ...state,
-        ...data,
+        token,
+        ...user,
         authStatus: AUTH_STATUS.authenticated,
       };
     },
     [authenticateAsync.rejected]: (state) => {
       state.authStatus = AUTH_STATUS.rejected;
+    },
+    [updateAsync.fulfilled]: (state, action) => {
+      const { data } = action.payload;
+      const { user, token } = data;
+      return {
+        ...state,
+        token,
+        ...user,
+        authStatus: AUTH_STATUS.authenticated,
+      };
     },
   },
 });

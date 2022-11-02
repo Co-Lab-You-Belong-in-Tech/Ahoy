@@ -76,3 +76,29 @@ export async function authenticate(token) {
     throw new Error('Can not get JSON from the response');
   }
 }
+
+export async function updateUser({ data, token }) {
+  const endpoint = '/users/me';
+
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  };
+
+  const response = await fetch(CONFIG.BASE_URL + endpoint, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify(data),
+  });
+
+  if (!response || response.status !== 200) {
+    throw new Error('Failed in updating data');
+  }
+
+  try {
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error('Can not get JSON from the response');
+  }
+}

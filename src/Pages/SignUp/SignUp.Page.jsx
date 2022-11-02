@@ -33,7 +33,7 @@ const SignUpPage = () => {
     dispatch(signupAsync({ email, password }))
       .unwrap()
       .then(() => {
-        navigate('/dashboard');
+        navigate('/users/create-profile');
       })
       .catch((error) => {
         toast.error(error.message);
