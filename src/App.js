@@ -53,9 +53,9 @@ function App() {
               <Route exact path="/dashboard" element={<Navigate to="/dashboard/find-match" />} />
               <Route path="/dashboard/find-match" element={<ProtectedRoute to={<FindMatch />} />} />
 
+              <Route path="/users/create-profile" element={<ProtectedRoute to={<CreateProfile />} />} />
               <Route path="/users/register" element={<SignUpPage />} />
               <Route path="/users/sign-in" element={<SignInPage />} />
-              <Route path="/users/create-profile" element={<CreateProfile />} />
               <Route index path="/" element={<SignInPage />} />
             </Routes>
           </BrowserRouter>
