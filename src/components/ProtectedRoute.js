@@ -13,7 +13,7 @@ const ProtectedRoute = ({ to }) => {
     case AUTH_STATUS.failed:
       return (<>Failed to authenticate. Try again later!</>);
     default:
-      return (<>Loading...</>);
+      return (<div className="loading">Loading...</div>);
   }
 };
 
