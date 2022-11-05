@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ProfileComplete = () => (
-  (
+const ProfileComplete = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => navigate('/dashboard'), 2000);
+  }, []);
+
+  return (
     <div className="profile-complete">
       <h2>Congratulations User</h2>
       <div className="v-spacer" />
@@ -15,7 +21,7 @@ const ProfileComplete = () => (
         nearby in just a few seconds.
       </p>
     </div>
-  )
-);
+  );
+};
 
 export default ProfileComplete;
