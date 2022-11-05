@@ -1,9 +1,46 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Logo from '../../assets/logo.svg';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-const SignUpPage = () => (
-  (
+import Logo from '../../assets/logo.svg';
+import AUTH_STATUS from '../../features/user/authStatus';
+
+import { signupAsync } from '../../features/user/userSlice';
+
+const SignUpPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
+  const { authStatus } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  if (authStatus === AUTH_STATUS.authenticated) {
+    return (<Navigate to="/dashboard" replace />);
+  }
+
+  const handleInput = (e) => {
+    if (e.target.id === 'email') {
+      setEmail(e.target.value);
+    } else if (e.target.id === 'password') {
+      setPassword(e.target.value);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(signupAsync({ email, password }))
+      .unwrap()
+      .then(() => {
+        navigate('/users/create-profile');
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
+  return (
     <section className="auth-page">
       <header>
         <img src={Logo} alt="logo" className="logo" />
@@ -11,21 +48,35 @@ const SignUpPage = () => (
 
       <main>
         <h2>Create Your Account</h2>
-        <form action="" method="post">
-          <input type="email" placeholder="Email" className="input" required />
-          <input type="password" placeholder="Password" className="input" required />
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input
+            id="email"
+            type="email"
+            placeholder="Email"
+            className="input"
+            onChange={handleInput}
+            required
+          />
+          <input
+            id="password"
+            type="password"
+            placeholder="Password"
+            className="input"
+            onChange={handleInput}
+            required
+          />
           <div className="v-spacer" />
           <button type="submit" className="btn">Sign up</button>
         </form>
         <div className="center auth-nav">
           Already have an account?
-          <Link to="/">
+          <Link to="/users/sign-in">
             Log In
           </Link>
         </div>
       </main>
     </section>
-  )
-);
+  );
+};
 
 export default SignUpPage;

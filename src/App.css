@@ -52,7 +52,6 @@
 }
 
 /* create profile page */
-
 .create-profile-page {
   width: 100%;
   height: 100%;
@@ -67,22 +66,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .back-btn {
   border-radius: 0.75rem;
   background-color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem;
   color: black;
-  font-size: 1.125rem;
-  font-weight: 500;
   border: 1px solid black;
   cursor: pointer;
+  display: grid;
+  place-content: center;
+}
+
+.back-btn > svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .disable {
   pointer-events: none;
+  opacity: 0.25;
 }
 
 .skip-btn {
@@ -106,9 +110,11 @@
 }
 
 /* User Image */
-.image-output {
+.create-page-image-preview {
   width: 100%;
   height: 30vh;
+  background-size: cover;
+  background-position: center;
 }
 
 .profile-complete {
@@ -122,7 +128,6 @@
 }
 
 /* Find match */
-
 .matches-form {
   width: 100%;
   height: 100%;
@@ -133,7 +138,6 @@
   padding: 1.25rem;
   text-align: center;
 }
-
 
 .matches-main {
   width: 100%;
@@ -146,7 +150,7 @@
 }
 
 .spark-btn {
-  width: 100%;;
+  width: 100%;
   border: none;
   background-color: transparent;
 }
@@ -162,7 +166,7 @@
   height: 34px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -176,11 +180,10 @@
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  transition: 0.4s;
 }
 
-.slider:before {
+.slider::before {
   position: absolute;
   content: "";
   height: 26px;
@@ -188,21 +191,18 @@
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
+input:checked + .slider::before {
   transform: translateX(26px);
 }
 
@@ -211,7 +211,7 @@ input:checked + .slider:before {
   border-radius: 34px;
 }
 
-.slider.round:before {
+.slider.round::before {
   border-radius: 50%;
 }
 
@@ -240,16 +240,15 @@ input:checked + .slider:before {
 }
 
 .concentric-circles {
-  background-color: #FFFDA1;
+  background-color: #fffda1;
   border-radius: 50%;
   transform: scale(2.5);
   transition: all 0.2s ease-in-out;
-  animation: ripple 1.0s 0.3s infinite;
-  -webkit-animation: ripple 2.0s 0.2s  infinite;
+  animation: ripple 1s 0.3s infinite;
+  animation: ripple 2s 0.2s  infinite;
 }
 
 /* Matching complete */
-
 .matching-complete {
   margin-top: auto;
   width: 100%;
@@ -258,7 +257,7 @@ input:checked + .slider:before {
   flex-direction: column;
   justify-content: space-evenly;
   gap: 1.25rem;
-  background-color: #FFFDA1;
+  background-color: #fffda1;
   border-radius: 1rem;
   padding-bottom: 1rem;
 }
@@ -274,7 +273,8 @@ input:checked + .slider:before {
   border-radius: 1rem;
 }
 
-.profile-image-one, .profile-image-two {
+.profile-image-one,
+.profile-image-two {
   width: 100%;
   height: auto;
   border-radius: 1rem;
@@ -283,6 +283,7 @@ input:checked + .slider:before {
 .profile-image-one {
   transform: rotate(-15deg);
 }
+
 .profile-image-two {
   transform: rotate(15deg);
 }
@@ -310,28 +311,29 @@ input:checked + .slider:before {
 
 @keyframes ripple {
   20% {
-    box-shadow: 0px 0px 0px 6px rgba(255, 253, 161, 0.3)
-      ,
-                0px 0px 0px 8px #FFFDA1;
+    box-shadow:
+      0 0 0 6px rgb(255 253 161 / 30%),
+      0 0 0 8px #fffda1;
   }
-  
+
   50% {
-    box-shadow: 0px 0px 0px 6px rgb(255, 253, 161),
-                0px 0px 0px 8px #FFFDA1,
-                0px 0px 0px 14px #FFFDA1,
-                0px 0px 2px 16px #FFFDA1;
+    box-shadow:
+      0 0 0 6px rgb(255 253 161),
+      0 0 0 8px #fffda1,
+      0 0 0 14px #fffda1,
+      0 0 2px 16px #fffda1;
   }
-  
+
   100% {
-    box-shadow: 0px 0px 0px 6px #FFFDA1,
-                0px 0px 0px 8px #FFFDA1,
-                0px 0px 0px 14px #FFFDA1,
-                0px 0px 2px 16px #FFFDA1, 
-                0px 0px 0px 22px rgba(255, 253, 161, 0.8),
-                0px 0px 5px 24px #FFFDA1;
+    box-shadow:
+      0 0 0 6px #fffda1,
+      0 0 0 8px #fffda1,
+      0 0 0 14px #fffda1,
+      0 0 2px 16px #fffda1,
+      0 0 0 22px rgb(255 253 161 / 80%),
+      0 0 5px 24px #fffda1;
   }
 }
-
 
 @media (min-width: 1024px) {
   .hero-info {

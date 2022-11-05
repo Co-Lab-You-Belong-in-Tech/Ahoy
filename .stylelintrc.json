@@ -14,10 +14,7 @@
         "ignoreAtRules": ["tailwind", "apply", "variants", "responsive", "screen"]
       }
     ],
-    "csstree/validator": true,
-    "linebreak-style": 0,
-    "react/require-default-props": "off",
-    "jsx-a11y/label-has-for": 0
+    "csstree/validator": true
   },
   "ignoreFiles": ["build/**", "dist/**", "**/reset*.css", "**/bootstrap*.css", "**/*.js", "**/*.jsx"]
 }
