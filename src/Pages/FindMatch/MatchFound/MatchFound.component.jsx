@@ -1,7 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const MatchFound = () => (
-  (
+const MatchFound = ({ setPage }) => {
+  const { name } = useSelector((state) => state.user);
+
+  const navigate = useNavigate();
+
+  return (
     <section className="matching-complete">
       <div className="matching-complete-header">
         <div className="image-container">
@@ -12,15 +18,20 @@ const MatchFound = () => (
         </div>
       </div>
       <div className="matching-complete-body">
-        <p className="matching-complete-title">It&apos;s a match Lily.</p>
+        <p className="matching-complete-title">
+          It&apos;s a match
+          {' '}
+          {name}
+          .
+        </p>
         <p>Start a conversation now with each other.</p>
       </div>
       <div className="profile-footer">
-        <button className="btn connect-btn" type="button">Connect Now</button>
-        <button type="button" className="other-profiles">Check other matches</button>
+        <button className="btn connect-btn" onClick={() => navigate('/dashboard/chat')} type="button">Connect Now</button>
+        <button type="button" className="other-profiles" onClick={() => setPage('IDLE')}>Check other matches</button>
       </div>
     </section>
-  )
-);
+  );
+};
 
 export default MatchFound;
