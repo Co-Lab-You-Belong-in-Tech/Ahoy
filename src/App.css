@@ -147,6 +147,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  gap: 4rem;
 }
 
 .spark-btn {
@@ -237,6 +238,7 @@ input:checked + .slider::before {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 10rem;
 }
 
 .concentric-circles {
@@ -245,7 +247,7 @@ input:checked + .slider::before {
   transform: scale(2.5);
   transition: all 0.2s ease-in-out;
   animation: ripple 1s 0.3s infinite;
-  animation: ripple 2s 0.2s  infinite;
+  animation: ripple 2s 0.2s infinite;
 }
 
 /* Matching complete */
@@ -303,10 +305,15 @@ input:checked + .slider::before {
   margin: 0 auto;
 }
 
+.matching-complete-body p {
+  text-align: center;
+}
+
 .other-profiles {
   border: none;
   background-color: transparent;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 @keyframes ripple {

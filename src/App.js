@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import userSlice, { authenticateAsync } from './features/user/userSlice';
 import ProtectedRoute from './components/ProtectedRoute';
+import BottomNavigation from './components/BottomNav/BottomNavigation.component';
 import SignUpPage from './Pages/SignUp/SignUp.Page';
 import SignInPage from './Pages/SignIn/SignIn.Page';
 import CreateProfile from './Pages/CreateProfile/CreateProfile.Page';
@@ -58,6 +59,7 @@ function App() {
               <Route path="/users/sign-in" element={<SignInPage />} />
               <Route index path="/" element={<SignInPage />} />
             </Routes>
+            <BottomNavigation />
           </BrowserRouter>
         </div>
         <aside>

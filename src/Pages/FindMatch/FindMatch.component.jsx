@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Logo from '../../assets/logo.svg';
-import BottomNavigation from '../../components/BottomNav/BottomNavigation.component';
 import SearchingForMatch from './SearchingForMatch/SearchingForMatch.component';
 import MatchFound from './MatchFound/MatchFound.component';
 
@@ -20,8 +19,6 @@ const FindMatch = () => {
       {currentTab === 'IDLE' && <IdlePage setPage={setPage} />}
       {currentTab === 'FINDING' && <SearchingForMatch setPage={setPage} />}
       {currentTab === 'FOUND' && <MatchFound setPage={setPage} />}
-
-      <BottomNavigation />
     </>
   );
 };
