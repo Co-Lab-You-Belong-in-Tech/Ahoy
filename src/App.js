@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes, Route,
+  Navigate,
+} from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
 import './App.css';
@@ -8,10 +12,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import userSlice, { authenticateAsync } from './features/user/userSlice';
 import ProtectedRoute from './components/ProtectedRoute';
+import BottomNavigation from './components/BottomNav/BottomNavigation.component';
 import SignUpPage from './Pages/SignUp/SignUp.Page';
 import SignInPage from './Pages/SignIn/SignIn.Page';
-import Dashboard from './Pages/Dashboard/Dashboard.Page';
 import CreateProfile from './Pages/CreateProfile/CreateProfile.Page';
+import FindMatch from './Pages/FindMatch/FindMatch.component';
 
 function App() {
   const { token } = useSelector((state) => state.user);
@@ -46,13 +51,15 @@ function App() {
         <div className="app">
           <BrowserRouter>
             <Routes>
-              <Route exact path="/dashboard" element={<ProtectedRoute to={<Dashboard />} />} />
+              <Route exact path="/dashboard" element={<Navigate to="/dashboard/find-match" />} />
+              <Route path="/dashboard/find-match" element={<ProtectedRoute to={<FindMatch />} />} />
 
+              <Route path="/users/create-profile" element={<ProtectedRoute to={<CreateProfile />} />} />
               <Route path="/users/register" element={<SignUpPage />} />
               <Route path="/users/sign-in" element={<SignInPage />} />
-              <Route path="/users/create-profile" element={<CreateProfile />} />
-              <Route index path="/" element={(<SignInPage />)} />
+              <Route index path="/" element={<SignInPage />} />
             </Routes>
+            <BottomNavigation />
           </BrowserRouter>
         </div>
         <aside>

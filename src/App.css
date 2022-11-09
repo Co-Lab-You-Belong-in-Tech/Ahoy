@@ -127,6 +127,221 @@
   padding: 1.25rem;
 }
 
+/* Find match */
+.matches-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.matches-main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 4rem;
+}
+
+.spark-btn {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+}
+
+.matches-logo {
+  width: 50%;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}
+
+/* Bottom navigation */
+.bottom-navigation {
+  margin-top: auto;
+  align-self: flex-end;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.matches-notification {
+  z-index: 3;
+  position: relative;
+}
+
+.searching-section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10rem;
+}
+
+.concentric-circles {
+  background-color: #fffda1;
+  border-radius: 50%;
+  transform: scale(2.5);
+  transition: all 0.2s ease-in-out;
+  animation: ripple 1s 0.3s infinite;
+  animation: ripple 2s 0.2s infinite;
+}
+
+/* Matching complete */
+.matching-complete {
+  margin-top: auto;
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1.25rem;
+  background-color: #fffda1;
+  border-radius: 1rem;
+  padding-bottom: 1rem;
+}
+
+.matching-complete-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container {
+  width: 40%;
+  border-radius: 1rem;
+}
+
+.profile-image-one,
+.profile-image-two {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
+.profile-image-one {
+  transform: rotate(-15deg);
+}
+
+.profile-image-two {
+  transform: rotate(15deg);
+}
+
+.profile-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.matching-complete-title {
+  font-size: 2rem;
+}
+
+.connect-btn {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.matching-complete-body p {
+  text-align: center;
+}
+
+.other-profiles {
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@keyframes ripple {
+  20% {
+    box-shadow:
+      0 0 0 6px rgb(255 253 161 / 30%),
+      0 0 0 8px #fffda1;
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 6px rgb(255 253 161),
+      0 0 0 8px #fffda1,
+      0 0 0 14px #fffda1,
+      0 0 2px 16px #fffda1;
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 6px #fffda1,
+      0 0 0 8px #fffda1,
+      0 0 0 14px #fffda1,
+      0 0 2px 16px #fffda1,
+      0 0 0 22px rgb(255 253 161 / 80%),
+      0 0 5px 24px #fffda1;
+  }
+}
+
 @media (min-width: 1024px) {
   .hero-info {
     display: flex;
