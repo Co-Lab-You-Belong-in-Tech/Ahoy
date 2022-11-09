@@ -1,41 +1,28 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+
+import { callForMatchAsync } from '../../../features/match/matchSlice';
 
 import logo from '../../../assets/logo.svg';
 
 const SearchingForMatch = ({ setPage }) => {
-  const [match, setMatch] = useState({
-    status: false,
-  });
+  const match = useSelector((state) => state.match);
+  const { token } = useSelector((state) => state.user);
+
   const [attemptCount, setAttemptCount] = useState(0);
 
-  const callForMatch = () => {
-    setAttemptCount(attemptCount + 1);
-    const callForMatchAsync = async () => {
-      const newMatch = Math.random() > 0.8 ? 'matched' : '';
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(newMatch);
-        }, 2000);
-      });
-    };
+  const dispatch = useDispatch();
 
-    if (match.status === false) {
-      callForMatchAsync().then((newMatch) => {
-        if (newMatch) {
-          setMatch({
-            ...match,
-            status: true,
-          });
-        }
-      });
+  const callForMatch = () => {
+    if (match.status !== 'MATCHED') {
+      dispatch(callForMatchAsync({ token, location: {} }));
+      setAttemptCount(attemptCount + 1);
     }
   };
 
   useEffect(() => {
-    callForMatch();
-    // Go back to idle page after certain time
     const breakTime = 5 * 60 * 1000; // 5 minutes
     const goToIdlePageAfterSomeTime = setTimeout(() => {
       toast.info('No match at the moment. Try again after some time');
@@ -47,18 +34,25 @@ const SearchingForMatch = ({ setPage }) => {
     };
   }, []);
 
-  // Go to found page if there is a valid match
   useEffect(() => {
-    if (match.status) setPage('FOUND');
-  }, [match]);
+    if (attemptCount) {
+      setTimeout(() => {
+        if (match.status !== 'MATCHED') {
+          callForMatch();
+        }
+      }, 10 * 1000);
+    } else {
+      callForMatch();
+    }
+  }, [attemptCount]);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (match.status === false) {
-        callForMatch();
-      }
-    }, 2000);
-  }, [attemptCount]);
+    // Here we need to check if we have match but it is old, we could call
+    // reset reducer and force new calls here
+    if (match.status === 'MATCHED') {
+      setPage('FOUND');
+    }
+  }, [match]);
 
   return (
     <div className="searching-section">
